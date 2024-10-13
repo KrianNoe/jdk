@@ -220,9 +220,6 @@ SystemProperty::SystemProperty(const char* key, const char* value, bool writeabl
 // part of the option string.
 static bool match_option(const JavaVMOption *option, const char* name,
                          const char** tail) {
-  if (strcmp(option->optionString, "-XX:-DisableAttachMechanism") == 0) {
-    return false;
-  }
   size_t len = strlen(name);
   if (strncmp(option->optionString, name, len) == 0) {
     *tail = option->optionString + len;
