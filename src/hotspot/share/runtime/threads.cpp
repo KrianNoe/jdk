@@ -668,11 +668,9 @@ jint Threads::create_vm(JavaVMInitArgs* args, bool* canTryAgain) {
   os::initialize_jdk_signal_support(CHECK_JNI_ERR);
 
   // Start Attach Listener if +StartAttachListener or it can't be started lazily
-  if (!DisableAttachMechanism) {
-    AttachListener::vm_start();
-    if (StartAttachListener || AttachListener::init_at_startup()) {
-      AttachListener::init();
-    }
+  AttachListener::vm_start();
+  if (StartAttachListener || AttachListener::init_at_startup()) {
+    AttachListener::init();
   }
 
   // Launch -Xrun agents if EagerXrunInit is not set.

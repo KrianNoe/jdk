@@ -116,7 +116,7 @@ class AttachListener: AllStatic {
   }
 
   // indicates if this VM supports attach-on-demand
-  static bool is_attach_supported()             { return !DisableAttachMechanism; }
+  static bool is_attach_supported()             { return true; }
 
   // platform specific initialization
   static int pd_init();
