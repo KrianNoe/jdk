@@ -3997,5 +3997,5 @@ JVM_END
  * Return JNI_TRUE if warnings are printed when agents are dynamically loaded.
  */
 JVM_LEAF(jboolean, JVM_PrintWarningAtDynamicAgentLoad(void))
-  return (EnableDynamicAgentLoading && !FLAG_IS_CMDLINE(EnableDynamicAgentLoading)) ? JNI_TRUE : JNI_FALSE;
+  return JNI_TRUE;
 JVM_END
