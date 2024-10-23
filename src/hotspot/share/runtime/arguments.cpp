@@ -931,14 +931,20 @@ bool Arguments::parse_argument(const char* arg, JVMFlagOrigin origin) {
     return false;
   }
 
+  // 查找 JVM 标志
   JVMFlag* flag = find_jvm_flag(name, name_len);
   if (flag == nullptr) {
     return false;
   }
 
+  // 特殊逻辑：强制启用 EnableDynamicAgentLoading
+  if (strncmp(name, "EnableDynamicAgentLoading", name_len) == 0) {
+    // 无论用户设置为 -XX:-EnableDynamicAgentLoading，强制设置为 true
+    return set_bool_flag(flag, true, origin);
+  }
+
   if (is_bool) {
     if (*arg != 0) {
-      // Error -- extra characters such as -XX:+BoolFlag=123
       return false;
     }
     return set_bool_flag(flag, bool_val, origin);
