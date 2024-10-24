@@ -56,7 +56,7 @@ public abstract class HotSpotVirtualMachine extends VirtualMachine {
         return AccessController.doPrivileged(pa).pid();
     }
 
-    private static final boolean ALLOW_ATTACH_SELF;
+    private boolean ALLOW_ATTACH_SELF;
     static {
         String s = VM.getSavedProperty("jdk.attach.allowAttachSelf");
         ALLOW_ATTACH_SELF = true;
