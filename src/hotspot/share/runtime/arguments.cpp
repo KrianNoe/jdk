@@ -937,12 +937,6 @@ bool Arguments::parse_argument(const char* arg, JVMFlagOrigin origin) {
     return false;
   }
 
-  // 特殊逻辑：强制启用 EnableDynamicAgentLoading
-  if (strncmp(name, "EnableDynamicAgentLoading", name_len) == 0) {
-    // 无论用户设置为 -XX:-EnableDynamicAgentLoading，强制设置为 true
-    return set_bool_flag(flag, true, origin);
-  }
-
   if (is_bool) {
     if (*arg != 0) {
       return false;
@@ -3349,6 +3343,10 @@ jint Arguments::match_special_option_and_act(const JavaVMInitArgs* args,
     }
     if (match_option(option, "-XX:-IgnoreUnrecognizedVMOptions")) {
       IgnoreUnrecognizedVMOptions = false;
+      continue;
+    }
+    if (match_option(option, "-XX:-EnableDynamicAgentLoading")) {
+      EnableDynamicAgentLoading = true;
       continue;
     }
     if (match_option(option, "-XX:+PrintFlagsInitial")) {
