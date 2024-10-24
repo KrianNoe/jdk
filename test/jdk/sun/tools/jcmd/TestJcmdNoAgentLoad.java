@@ -75,12 +75,12 @@ public class TestJcmdNoAgentLoad {
     private static final String TEST_CLASSES = System.getProperty("test.classes");
     private static String javaAgent;
 
-    static {
-        // get VM option EnableDynamicAgentLoading value
-        HotSpotDiagnosticMXBean bean = ManagementFactory.getPlatformMXBean(HotSpotDiagnosticMXBean.class);
-        VMOption dynamicLoadingEnabledOpt = bean.getVMOption("EnableDynamicAgentLoading");
-        dynamicLoadingEnabled = dynamicLoadingEnabledOpt.getValue().equals("true");
-    }
+//    static {
+//        // get VM option EnableDynamicAgentLoading value
+//        HotSpotDiagnosticMXBean bean = ManagementFactory.getPlatformMXBean(HotSpotDiagnosticMXBean.class);
+//        VMOption dynamicLoadingEnabledOpt = bean.getVMOption("EnableDynamicAgentLoading");
+//        dynamicLoadingEnabled = dynamicLoadingEnabledOpt.getValue().equals("true");
+//    }
 
     public static void main(String[] args) throws Exception {
         setup();
